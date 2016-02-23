@@ -1,5 +1,7 @@
 package com.keyword.filter;
 
+import com.keyword.dfa.DFA;
+
 /**
  * 关键词过滤操作类
  *
@@ -7,5 +9,7 @@ package com.keyword.filter;
  * @create 2016/2/23 16:57
  */
 public class KeywordFilter {
+
+    private DFA dfa;
 
 }
