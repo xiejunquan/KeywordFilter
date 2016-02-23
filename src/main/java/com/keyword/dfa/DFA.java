@@ -35,47 +35,42 @@ public class DFA {
         }
     }
 
-
-
-
-
-
-
-
-
     public void setKeyword(String keyword){
         keywordSet.add(keyword);
         setKeywordToDFAState(keyword);
     }
 
     private void setKeywordToDFAState(String keyword){
-        int length = keyword.length();
-        for(int i = 0; i < length; i++){
-            char ch = keyword.charAt(i);
-            String name = String.valueOf(ch);
-            if(i == 0){
-
-            }else {
-
+        DFAState currDFAState = getFirstDFAState(keyword);
+        if(!EmptyUtil.isEmpty(currDFAState)) {
+            int length = keyword.length();
+            for (int i = 1; i < length; i++) {
+                String name = String.valueOf(keyword.charAt(i));
+                if(!currDFAState.existNextState(name)){
+                    boolean isEnd = (i == length - 1) ? true : false;
+                    DFAState newDFAState = new DFAState(name, isEnd);
+                    currDFAState.setNextState(newDFAState);
+                    currDFAState = newDFAState;
+                }
             }
-            boolean isEnd = false;
-            if(i >= length - 1){
-                isEnd = true;
-            }
-            setDFAState(name, isEnd);
         }
     }
 
-    private void setFirstDFAState(String stateName, boolean isEnd){
+    private DFAState getFirstDFAState(String keyword){
 
-    }
-
-    private void setDFAState(String stateName, boolean isEnd){
-        if(stateDiagram.containsKey(stateName)){
-
+        if(!EmptyUtil.isEmpty(keyword) && keyword.length() > 0){
+            int length = keyword.length();
+            String firstName = String.valueOf(keyword.charAt(0));
+            DFAState currDFAState = stateDiagram.get(firstName);
+            if(EmptyUtil.isEmpty(currDFAState)){
+                boolean isEnd = (length == 1) ? true : false;
+                currDFAState = new DFAState(firstName, isEnd);
+                stateDiagram.put(firstName, currDFAState);
+            }
+            return currDFAState;
         }
+        return null;
     }
-
 
 
 }

@@ -13,7 +13,7 @@ public class DFAState {
 
     private String stateName;
     private boolean isEnd;
-    private Map<String, DFAState> stateMap = new HashMap<String, DFAState>();
+    private Map<String, DFAState> nextStateMap = new HashMap<String, DFAState>();
 
 
     public DFAState(String stateName, boolean isEnd) {
@@ -23,11 +23,15 @@ public class DFAState {
 
     public void setNextState(DFAState state){
         String stateName = state.getStateName();
-        stateMap.put(stateName, state);
+        nextStateMap.put(stateName, state);
     }
 
     public DFAState getNextState(String stateName){
-        return stateMap.get(stateName);
+        return nextStateMap.get(stateName);
+    }
+
+    public boolean existNextState(String stateName){
+        return nextStateMap.containsKey(stateName);
     }
 
     public String getStateName() {
