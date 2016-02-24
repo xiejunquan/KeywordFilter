@@ -10,6 +10,6 @@ import com.keyword.dfa.DFA;
  */
 public class KeywordFilter {
 
-    private DFA dfa;
+    private static DFA dfa = new DFA();
 
 }

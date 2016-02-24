@@ -24,6 +24,11 @@ public class PinYinUtil {
         loadUnicodeToHanyuPinyinTxt(path);
     }
 
+    /**
+     * 获取对应汉字的拼音
+     * @param hanyu
+     * @return
+     */
     public static String getPinyin(String hanyu){
 
         StringBuilder pinyinBuilder = new StringBuilder();
@@ -35,7 +40,7 @@ public class PinYinUtil {
                 String pinyinProperty = hanyuPinyinMap.getProperty(code);
                 if(!EmptyUtil.isEmpty(pinyinProperty)) {
                     String pinyin = getPinyinFromProperty(pinyinProperty);
-                    pinyinBuilder.append(pinyin).append(" ");
+                    pinyinBuilder.append(pinyin);
                 }
             }
         }
@@ -67,6 +72,10 @@ public class PinYinUtil {
         return list;
     }
 
+    /**
+     * 加载unicode的拼音对应表
+     * @param unicodeToHanyuPinyinTxt
+     */
     public static void loadUnicodeToHanyuPinyinTxt(String unicodeToHanyuPinyinTxt){
         InputStream is = null;
         try {
