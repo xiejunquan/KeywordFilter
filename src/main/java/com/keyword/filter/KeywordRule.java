@@ -10,5 +10,10 @@ import java.util.Set;
  */
 public interface KeywordRule {
 
+    /**
+     * 返回通过某种规则处理后的多个拓展关键字
+     * @param word
+     * @return
+     */
     Set<String> getKeywords(String word);
 }

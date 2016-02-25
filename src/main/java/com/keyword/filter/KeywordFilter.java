@@ -18,6 +18,10 @@ public class KeywordFilter {
 
     private Set<Keyword> keywords = new HashSet<Keyword>();
 
+    /**
+     * 设置敏感关键字的集合
+     * @param keywordSet
+     */
     public void setKeywords(Set<Keyword> keywordSet){
         if(!EmptyUtil.isEmpty(keywordSet)){
             for (Keyword keyword : keywordSet) {
@@ -27,6 +31,10 @@ public class KeywordFilter {
         }
     }
 
+    /**
+     * 设置敏感关键字
+     * @param keyword
+     */
     public void setKeyword(Keyword keyword){
         if(!EmptyUtil.isEmpty(keyword)){
             dfa.setKeywords(keyword.getKeywords());
@@ -34,6 +42,12 @@ public class KeywordFilter {
         }
     }
 
+    /**
+     * 获取过滤了敏感词的原文
+     * @param wordSet   需要被过滤的原文集合
+     * @param handler   过滤关键字的处理办法
+     * @return
+     */
     public Set<String> filter(Set<String> wordSet, KeywordHandler handler){
         Set<String> result = new HashSet<String>();
         if(!EmptyUtil.isEmpty(wordSet)){
@@ -47,6 +61,12 @@ public class KeywordFilter {
         return result;
     }
 
+    /**
+     * 获取过滤了敏感词的原文
+     * @param word   需要被过滤的原文
+     * @param handler   过滤关键字的处理办法
+     * @return
+     */
     public String filter(String word, KeywordHandler handler){
 
         String filterWord = word;
