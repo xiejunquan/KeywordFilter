@@ -25,11 +25,25 @@ public class PinYinUtil {
     }
 
     /**
+     * 获取对应汉字的拼音的首字母
+     * @param hanyu
+     * @return
+     */
+    public static String getPinyinInitials(String hanyu){
+        return getPinyin(new InitialsPinyinHandler(), hanyu);
+    }
+
+    /**
      * 获取对应汉字的拼音
      * @param hanyu
      * @return
      */
     public static String getPinyin(String hanyu){
+
+        return getPinyin(new DefaultPinyinHandler(), hanyu);
+    }
+
+    private static String getPinyin(PinyinHandler handler, String hanyu){
 
         StringBuilder pinyinBuilder = new StringBuilder();
         if(!EmptyUtil.isEmpty(hanyu)){
@@ -40,7 +54,7 @@ public class PinYinUtil {
                 String pinyinProperty = hanyuPinyinMap.getProperty(code);
                 if(!EmptyUtil.isEmpty(pinyinProperty)) {
                     String pinyin = getPinyinFromProperty(pinyinProperty);
-                    pinyinBuilder.append(pinyin);
+                    pinyinBuilder.append(handler.handle(pinyin));
                 }
             }
         }
@@ -72,6 +86,7 @@ public class PinYinUtil {
         return list;
     }
 
+
     /**
      * 加载unicode的拼音对应表
      * @param unicodeToHanyuPinyinTxt
@@ -100,10 +115,26 @@ public class PinYinUtil {
 
     }
 
-    private class Field{
+    private static class Field{
         static final String LEFT_BRACKET = "(";
         static final String RIGHT_BRACKET = ")";
         static final String COMMA = ",";
+    }
+
+    private interface PinyinHandler{
+        String handle(String pinyin);
+    }
+
+    private static class DefaultPinyinHandler implements PinyinHandler{
+        public String handle(String pinyin) {
+            return pinyin;
+        }
+    }
+
+    private static class InitialsPinyinHandler implements PinyinHandler{
+        public String handle(String pinyin) {
+            return pinyin.substring(0, 1);
+        }
     }
 
 }

@@ -1,5 +1,7 @@
 package com.keyword.filter;
 
+import java.util.Set;
+
 /**
  * 关键字描述
  *
@@ -8,19 +10,23 @@ package com.keyword.filter;
  */
 public class Keyword {
 
-    private String name;
+    private String word;
     private KeywordRule rule;
 
-    public Keyword(String name, KeywordRule rule) {
-        this.name = name;
+    public Keyword(String word, KeywordRule rule) {
+        this.word = word;
         this.rule = rule;
+    }
+
+    public Set<String> getKeywords(){
+       return rule.getKeywords(word);
     }
 
     public KeywordRule getRule() {
         return rule;
     }
 
-    public String getName() {
-        return name;
+    public String getWord() {
+        return word;
     }
 }

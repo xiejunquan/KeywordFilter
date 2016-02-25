@@ -30,11 +30,17 @@ public class DFA {
     private void searchKeyword(Set<String> result, String word){
 
         DFAState currState = rootDFAState;
+        int backNum = 0;
         for(int i = 0; i < word.length() && !currState.isEnd; i++){
             Character name = word.charAt(i);
             if(currState.nextStateMap.containsKey(name)){
                 currState = currState.nextStateMap.get(name);
+                backNum++;
             }else{
+                if(backNum > 0){
+                    i = i - backNum;
+                    backNum = 0;
+                }
                 currState = rootDFAState;
             }
         }
