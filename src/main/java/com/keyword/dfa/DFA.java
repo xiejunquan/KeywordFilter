@@ -16,6 +16,8 @@ public class DFA {
 
     private Set<String> keywordSet = new HashSet<String>();
 
+    private boolean isBuilded = false;
+
     /**
      * 搜索在给定的文字中有哪些敏感的关键字
      * @param word
@@ -95,6 +97,7 @@ public class DFA {
             String keyword = it.next();
             setkeywordToDFAState(keyword);
         }
+        isBuilded = true;
     }
 
     private void setkeywordToDFAState(String keyword){
@@ -116,6 +119,7 @@ public class DFA {
      */
     public void clear(){
         clear(rootDFAState);
+        isBuilded = false;
     }
 
     private void clear(DFAState state){
@@ -124,6 +128,10 @@ public class DFA {
             clear(currState);
         }
         state = null;
+    }
+
+    public boolean isBuilded(){
+        return isBuilded;
     }
 
 
