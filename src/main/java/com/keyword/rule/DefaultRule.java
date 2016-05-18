@@ -1,4 +1,6 @@
-package com.keyword.filter;
+package com.keyword.rule;
+
+import com.keyword.rule.KeywordRule;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +11,7 @@ import java.util.Set;
  * @author 谢俊权
  * @create 2016/2/25 10:31
  */
-public class DefaultRule implements KeywordRule{
+public class DefaultRule implements KeywordRule {
 
     public Set<String> getKeywords(String word) {
         Set<String> set = new HashSet<String>();

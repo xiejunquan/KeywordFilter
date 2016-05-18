@@ -1,4 +1,4 @@
-package com.keyword.filter;
+package com.keyword.rule;
 
 import com.keyword.util.EmptyUtil;
 import com.keyword.util.PinYinUtil;

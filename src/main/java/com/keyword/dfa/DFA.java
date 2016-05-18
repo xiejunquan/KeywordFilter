@@ -157,10 +157,10 @@ public class DFA {
         keywordSet.add("毛泽东");
         keywordSet.add("江泽民");
         keywordSet.add("中国共产党");
-        keywordSet.add("法轮功哈哈哈啊哈");
+        keywordSet.add("法轮功");
         dfa.setKeywords(keywordSet);
         dfa.build();
-        System.out.println(dfa.search("共产党中国共产党啊毛泽东就算开绿灯飞机江泽民阿喀琉共党jiangze斯节日哦maozdong权威 "));
+        System.out.println(dfa.search("共产党中国共产党啊毛泽东就falungong算开绿灯飞机江泽民阿喀琉共党jiangze斯节日哦maozdong权威 "));
     }
 
 

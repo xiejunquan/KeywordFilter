@@ -1,4 +1,4 @@
-package com.keyword.filter;
+package com.keyword.rule;
 
 import java.util.Set;
 

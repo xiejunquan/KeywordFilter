@@ -1,5 +1,7 @@
 package com.keyword.filter;
 
+import com.keyword.rule.KeywordRule;
+
 import java.util.Set;
 
 /**

@@ -1,6 +1,8 @@
 package com.keyword.test;
 
 import com.keyword.filter.*;
+import com.keyword.rule.DefaultRule;
+import com.keyword.rule.PinyinInitialsRule;
 
 /**
  * @author 谢俊权
@@ -12,13 +14,15 @@ public class Main {
 
         Keyword keyword1 = new Keyword("共产党", new PinyinInitialsRule());
         Keyword keyword2 = new Keyword("毛泽东", new PinyinInitialsRule());
-        Keyword keyword3 = new Keyword("江泽民", new DefaultRule());
+        Keyword keyword3 = new Keyword("法轮功", new PinyinInitialsRule());
+        Keyword keyword4 = new Keyword("江泽民", new DefaultRule());
 
 
         KeywordFilter keywordFilter = new KeywordFilter();
         keywordFilter.setKeyword(keyword1);
         keywordFilter.setKeyword(keyword2);
         keywordFilter.setKeyword(keyword3);
-        System.out.println(keywordFilter.filter("让卡拉集散地卢卡加速度毛泽东gongchan共产党就阿莱克斯打进or全无额 gongchandang啊哈哈啊哈毛泽江泽民虽然特认为", new DefaultHandler()));
+        keywordFilter.setKeyword(keyword4);
+        System.out.println(keywordFilter.filter("让卡拉集散地卢卡加速度毛泽东gongchan共产党falungong就阿莱克斯打进or全无额 gongchandang啊哈哈啊哈毛泽江泽民虽然特认为", new DefaultHandler()));
     }
 }
