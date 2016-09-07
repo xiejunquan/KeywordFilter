@@ -16,6 +16,10 @@ public class EmptyUtil {
         return false;
     }
 
+//    public static boolean clearEmpty(String str){
+//
+//    }
+
     public static boolean isEmpty(Collection<? extends Object> collection){
         if(collection == null || collection.isEmpty())
             return true;

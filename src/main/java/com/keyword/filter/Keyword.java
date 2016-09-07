@@ -1,8 +1,9 @@
 package com.keyword.filter;
 
 import com.keyword.rule.KeywordRule;
+import com.keyword.rule.Rule;
 
-import java.util.Set;
+import java.util.*;
 
 /**
  * 关键字描述
@@ -13,22 +14,23 @@ import java.util.Set;
 public class Keyword {
 
     private String word;
-    private KeywordRule rule;
+    private List<Rule> ruleList = new ArrayList<Rule>();
 
-    public Keyword(String word, KeywordRule rule) {
+    public Keyword(String word, Rule... rule) {
         this.word = word;
-        this.rule = rule;
+        this.ruleList.addAll(Arrays.asList(rule));
+        if(!this.ruleList.contains(Rule.DEFAULT)){
+            this.ruleList.add(Rule.DEFAULT);
+        }
     }
 
     public Set<String> getKeywords(){
-       return rule.getKeywords(word);
-    }
-
-    public KeywordRule getRule() {
-        return rule;
-    }
-
-    public String getWord() {
-        return word;
+        Set<String> keywordSet = new HashSet<String>();
+        for (Rule rule : ruleList) {
+            KeywordRule keywordRule = rule.getKeywordRule();
+            Set<String> keywords = keywordRule.getKeywords(word);
+            keywordSet.addAll(keywords);
+        }
+       return keywordSet;
     }
 }

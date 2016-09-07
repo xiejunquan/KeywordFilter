@@ -8,7 +8,7 @@ import java.util.Set;
  * @author 谢俊权
  * @create 2016/2/25 16:57
  */
-public interface KeywordHandler {
+public interface KeywordReplacer {
 
     String handle(Set<String> keywordSet, String word);
 }

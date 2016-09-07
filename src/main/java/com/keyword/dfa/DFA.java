@@ -47,14 +47,14 @@ public class DFA {
             }
         }
         if(currState.isEnd){
-            String keyword = getkeyword(currState);
+            String keyword = getKeyword(currState);
             result.add(keyword);
             word = word.replaceAll(keyword, "");
             searchKeyword(result, word);
         }
     }
 
-    private String getkeyword(DFAState state){
+    private String getKeyword(DFAState state){
         DFAState currState = state;
         StringBuilder keywordBuilder = new StringBuilder();
         while(!EmptyUtil.isEmpty(currState.parentState)){
@@ -95,14 +95,14 @@ public class DFA {
         Iterator<String> it = keywordSet.iterator();
         while(it.hasNext()){
             String keyword = it.next();
-            setkeywordToDFAState(keyword);
+            setKeywordToDFAState(keyword);
         }
         isBuilded = true;
     }
 
-    private void setkeywordToDFAState(String keyword){
+    private void setKeywordToDFAState(String keyword){
         DFAState currState = rootDFAState;
-        int length = keyword.length();
+        int length = (keyword == null) ? 0 : keyword.length();
         for(int i = 0; i < length; i++){
             Character name = keyword.charAt(i);
             if(!currState.nextStateMap.containsKey(name)){

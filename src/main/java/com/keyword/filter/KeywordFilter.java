@@ -42,13 +42,17 @@ public class KeywordFilter {
         }
     }
 
+    public Set<String> filter(Set<String> wordSet){
+        return filter(wordSet, new DefaultReplacer());
+    }
+
     /**
      * 获取过滤了敏感词的原文
      * @param wordSet   需要被过滤的原文集合
      * @param handler   过滤关键字的处理办法
      * @return
      */
-    public Set<String> filter(Set<String> wordSet, KeywordHandler handler){
+    public Set<String> filter(Set<String> wordSet, KeywordReplacer handler){
         Set<String> result = new HashSet<String>();
         if(!EmptyUtil.isEmpty(wordSet)){
             if(!dfa.isBuilded()){
@@ -61,21 +65,28 @@ public class KeywordFilter {
         return result;
     }
 
+    public String filter(String word){
+        return filter(word, new DefaultReplacer());
+    }
+
     /**
      * 获取过滤了敏感词的原文
      * @param word   需要被过滤的原文
      * @param handler   过滤关键字的处理办法
      * @return
      */
-    public String filter(String word, KeywordHandler handler){
+    public String filter(String word, KeywordReplacer handler){
 
         String filterWord = word;
         if(!EmptyUtil.isEmpty(word)){
             if(!dfa.isBuilded()){
                 dfa.build();
             }
-            Set<String> keywordSet = dfa.search(word);
-            filterWord = handler.handle(keywordSet, word);
+            String notEmptyWord = filterWord.replaceAll("[\t\n\r\\v\f ]", "");
+            Set<String> keywordSet = dfa.search(notEmptyWord);
+            if(!keywordSet.isEmpty()){
+                filterWord = handler.handle(keywordSet, notEmptyWord);
+            }
         }
         return filterWord;
     }

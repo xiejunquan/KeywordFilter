@@ -8,9 +8,9 @@ import java.util.Set;
  * @author 谢俊权
  * @create 2016/2/25 17:02
  */
-public class DefaultHandler implements KeywordHandler {
+public class DefaultReplacer implements KeywordReplacer {
 
-    private static final String REPALCE = "*";
+    private static final String REPLACE = "*";
 
     public String handle(Set<String> keywordSet, String word) {
 
@@ -18,9 +18,9 @@ public class DefaultHandler implements KeywordHandler {
             int length = keyword.length();
             StringBuilder replaceBuilder = new StringBuilder();
             for (int i = 0; i < length; i++) {
-                replaceBuilder.append(REPALCE);
+                replaceBuilder.append(REPLACE);
             }
-            word = word.replace(keyword, replaceBuilder.toString());
+            word = word.replaceAll(keyword, replaceBuilder.toString());
         }
         return word;
     }
